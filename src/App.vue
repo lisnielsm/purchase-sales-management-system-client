@@ -2,6 +2,9 @@
 .v-application a {
 	color: var(--v-anchor-base) !important;
 }
+.v-list-item--link:before {
+	background-color: #fff !important;
+}
 </style>
 
 <template>
@@ -33,9 +36,7 @@
 								<v-icon>table_chart</v-icon>
 							</v-list-item-action>
 							<v-list-item-content>
-								<v-list-item-title>
-									Categorías
-								</v-list-item-title>
+								<v-list-item-title> Categorías </v-list-item-title>
 							</v-list-item-content>
 						</v-list-item>
 						<v-list-item :to="{ name: 'articulos' }">
@@ -43,9 +44,7 @@
 								<v-icon>table_chart</v-icon>
 							</v-list-item-action>
 							<v-list-item-content>
-								<v-list-item-title>
-									Articulos
-								</v-list-item-title>
+								<v-list-item-title> Articulos </v-list-item-title>
 							</v-list-item-content>
 						</v-list-item>
 					</v-list-group>
@@ -62,9 +61,7 @@
 								<v-icon>table_chart</v-icon>
 							</v-list-item-action>
 							<v-list-item-content>
-								<v-list-item-title>
-									Ingresos
-								</v-list-item-title>
+								<v-list-item-title> Ingresos </v-list-item-title>
 							</v-list-item-content>
 						</v-list-item>
 						<v-list-item :to="{ name: '' }">
@@ -72,9 +69,7 @@
 								<v-icon>table_chart</v-icon>
 							</v-list-item-action>
 							<v-list-item-content>
-								<v-list-item-title>
-									Proveedores
-								</v-list-item-title>
+								<v-list-item-title> Proveedores </v-list-item-title>
 							</v-list-item-content>
 						</v-list-item>
 					</v-list-group>
@@ -99,9 +94,7 @@
 								<v-icon>table_chart</v-icon>
 							</v-list-item-action>
 							<v-list-item-content>
-								<v-list-item-title>
-									Clientes
-								</v-list-item-title>
+								<v-list-item-title> Clientes </v-list-item-title>
 							</v-list-item-content>
 						</v-list-item>
 					</v-list-group>
@@ -113,7 +106,7 @@
 								<v-list-item-title> Accesos </v-list-item-title>
 							</v-list-item-content>
 						</v-list-item>
-						<v-list-item :to="{ name: '' }">
+						<v-list-item :to="{ name: 'roles' }">
 							<v-list-item-action>
 								<v-icon>table_chart</v-icon>
 							</v-list-item-action>
@@ -126,9 +119,7 @@
 								<v-icon>table_chart</v-icon>
 							</v-list-item-action>
 							<v-list-item-content>
-								<v-list-item-title>
-									Usuarios
-								</v-list-item-title>
+								<v-list-item-title> Usuarios </v-list-item-title>
 							</v-list-item-content>
 						</v-list-item>
 					</v-list-group>
@@ -137,9 +128,7 @@
 					<v-list-group>
 						<v-list-item slot="activator">
 							<v-list-item-content>
-								<v-list-item-title>
-									Consultas
-								</v-list-item-title>
+								<v-list-item-title> Consultas </v-list-item-title>
 							</v-list-item-content>
 						</v-list-item>
 						<v-list-item :to="{ name: '' }">
@@ -147,9 +136,7 @@
 								<v-icon>table_chart</v-icon>
 							</v-list-item-action>
 							<v-list-item-content>
-								<v-list-item-title>
-									Consulta Compras
-								</v-list-item-title>
+								<v-list-item-title> Consulta Compras </v-list-item-title>
 							</v-list-item-content>
 						</v-list-item>
 						<v-list-item :to="{ name: '' }">
@@ -157,9 +144,7 @@
 								<v-icon>table_chart</v-icon>
 							</v-list-item-action>
 							<v-list-item-content>
-								<v-list-item-title>
-									Consulta Ventas
-								</v-list-item-title>
+								<v-list-item-title> Consulta Ventas </v-list-item-title>
 							</v-list-item-content>
 						</v-list-item>
 					</v-list-group>
@@ -174,9 +159,7 @@
 			fixed
 		>
 			<v-toolbar-title style="width: 300px" class="ml-0 pl-3">
-				<v-app-bar-nav-icon
-					@click.stop="drawer = !drawer"
-				></v-app-bar-nav-icon>
+				<v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 				<span class="hidden-sm-and-down">Sistema</span>
 			</v-toolbar-title>
 			<v-spacer></v-spacer>

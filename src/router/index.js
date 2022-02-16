@@ -1,14 +1,17 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import HelloWorld from "../components/HelloWorld.vue";
 import Categoria from "../components/Categoria.vue";
 import Articulo from "../components/Articulo.vue";
+import Rol from "../components/Rol.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "Home",
+    name: "home",
+    component: HelloWorld,
   },
   {
     path: "/categorias",
@@ -19,6 +22,11 @@ const routes = [
     path: "/articulos",
     name: "articulos",
     component: Articulo,
+  },
+  {
+    path: "/roles",
+    name: "roles",
+    component: Rol,
   },
 ];
 
