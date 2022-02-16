@@ -256,17 +256,6 @@ export default {
 			this.dialog = true;
 		},
 
-		deleteItem(item) {
-			this.editedIndex = this.categorias.indexOf(item);
-			this.editedItem = Object.assign({}, item);
-			this.dialogDelete = true;
-		},
-
-		deleteItemConfirm() {
-			this.categorias.splice(this.editedIndex, 1);
-			this.closeDelete();
-		},
-
 		close() {
 			this.dialog = false;
 			this.limpiar();
@@ -292,7 +281,7 @@ export default {
 				//Código para editar
 				let me = this;
 				axios
-					.put("api/Categorias/Actualizar", {
+					.put("api/categorias/Actualizar", {
 						idcategoria: me.id,
 						nombre: me.nombre,
 						descripcion: me.descripcion,
@@ -309,7 +298,7 @@ export default {
 				//Código para guardar
 				let me = this;
 				axios
-					.post("api/Categorias/Crear", {
+					.post("api/categorias/Crear", {
 						nombre: me.nombre,
 						descripcion: me.descripcion,
 					})
@@ -364,7 +353,7 @@ export default {
 
 			try {
 				const response = await axios.put(
-					"api/Categorias/Activar/" + this.adId
+					"api/categorias/Activar/" + this.adId
 				);
 
 				me.adModal = false;
@@ -383,7 +372,7 @@ export default {
 
 			try {
 				const response = await axios.put(
-					"api/Categorias/Desactivar/" + this.adId
+					"api/categorias/Desactivar/" + this.adId
 				);
 
 				me.adModal = false;

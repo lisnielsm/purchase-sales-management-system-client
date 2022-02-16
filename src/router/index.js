@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
-import Categoria from "../components/Categorias.vue";
+import Categoria from "../components/Categoria.vue";
+import Articulo from "../components/Articulo.vue";
 
 Vue.use(VueRouter);
 
@@ -9,12 +9,16 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home,
   },
   {
     path: "/categorias",
     name: "categorias",
     component: Categoria,
+  },
+  {
+    path: "/articulos",
+    name: "articulos",
+    component: Articulo,
   },
 ];
 
