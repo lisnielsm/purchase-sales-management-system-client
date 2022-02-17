@@ -62,9 +62,11 @@ export default {
 	methods: {
 		async listar() {
 			let me = this;
+			let header = { "Authorization": "Bearer " + this.$store.state.token };
+			let configuracion = { headers: header };
 
 			try {
-				const response = await axios.get("/api/roles/Listar");
+				const response = await axios.get("/api/roles/Listar", configuracion);
 				const items = response.data;
 				const data = [];
 

@@ -239,9 +239,11 @@ export default {
 	methods: {
 		async listar() {
 			let me = this;
+			let header = { "Authorization": "Bearer " + this.$store.state.token };
+			let configuracion = { headers: header };
 
 			try {
-				const response = await axios.get("/api/articulos/Listar");
+				const response = await axios.get("/api/articulos/Listar", configuracion);
 				const items = response.data;
 				const data = [];
 
@@ -264,9 +266,11 @@ export default {
 		async select() {
 			let me = this;
 			let categoriasArray = [];
+			let header = { "Authorization": "Bearer " + this.$store.state.token };
+			let configuracion = { headers: header };
 
 			try {
-				const response = await axios.get("/api/categorias/Select");
+				const response = await axios.get("/api/categorias/Select", configuracion);
 				const categoriasArray = response.data;
 
 				categoriasArray.map((c) => {
@@ -317,6 +321,9 @@ export default {
 				return;
 			}
 
+			let header = { "Authorization": "Bearer " + this.$store.state.token };
+			let configuracion = { headers: header };
+
 			if (this.editedIndex > -1) {
 				//Código para editar
 				let me = this;
@@ -329,7 +336,7 @@ export default {
 						stock: me.stock,
 						precio_venta: me.precio_venta,
 						descripcion: me.descripcion,
-					})
+					}, configuracion)
 					.then(function (response) {
 						me.close();
 						me.listar();
@@ -349,7 +356,7 @@ export default {
 						stock: me.stock,
 						precio_venta: me.precio_venta,
 						descripcion: me.descripcion,
-					})
+					}, configuracion)
 					.then(function (response) {
 						me.close();
 						me.listar();
@@ -410,9 +417,11 @@ export default {
 
 		async activar() {
 			let me = this;
+			let header = { "Authorization": "Bearer " + this.$store.state.token };
+			let configuracion = { headers: header };
 
 			try {
-				const response = await axios.put("api/articulos/Activar/" + this.adId);
+				const response = await axios.put("api/articulos/Activar/" + this.adId, {}, configuracion);
 
 				me.adModal = false;
 				me.adAccion = 0;
@@ -427,11 +436,11 @@ export default {
 
 		async desactivar() {
 			let me = this;
+			let header = { "Authorization": "Bearer " + this.$store.state.token };
+			let configuracion = { headers: header };
 
 			try {
-				const response = await axios.put(
-					"api/articulos/Desactivar/" + this.adId
-				);
+				const response = await axios.put("api/articulos/Desactivar/" + this.adId, {}, configuracion);
 
 				me.adModal = false;
 				me.adAccion = 0;

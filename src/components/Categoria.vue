@@ -16,18 +16,12 @@
 						mdi-pencil
 					</v-icon>
 					<template v-if="item.condicion === 'Activo'">
-						<v-icon
-							small
-							@click="activarDesactivarMostrar(2, item)"
-						>
+						<v-icon small @click="activarDesactivarMostrar(2, item)">
 							block
 						</v-icon>
 					</template>
 					<template v-else>
-						<v-icon
-							small
-							@click="activarDesactivarMostrar(1, item)"
-						>
+						<v-icon small @click="activarDesactivarMostrar(1, item)">
 							check
 						</v-icon>
 					</template>
@@ -81,12 +75,7 @@
 													label="Descripción"
 												></v-text-field>
 											</v-col>
-											<v-col
-												cols="12"
-												sm="12"
-												md="12"
-												v-show="valida"
-											>
+											<v-col cols="12" sm="12" md="12" v-show="valida">
 												<div
 													class="red--text"
 													v-for="v in validaMensaje"
@@ -100,16 +89,10 @@
 
 								<v-card-actions>
 									<v-spacer></v-spacer>
-									<v-btn
-										color="blue darken-1"
-										text
-										@click="close"
+									<v-btn color="blue darken-1" text @click="close"
 										>Cancelar</v-btn
 									>
-									<v-btn
-										color="blue darken-1"
-										text
-										@click="guardar"
+									<v-btn color="blue darken-1" text @click="guardar"
 										>Guardar</v-btn
 									>
 								</v-card-actions>
@@ -117,16 +100,10 @@
 						</v-dialog>
 						<v-dialog v-model="adModal" max-width="350px">
 							<v-card>
-								<v-card-title
-									class="headline"
-									v-if="adAccion == 1"
-								>
+								<v-card-title class="headline" v-if="adAccion == 1">
 									¿Activar item?
 								</v-card-title>
-								<v-card-title
-									class="headline"
-									v-if="adAccion == 2"
-								>
+								<v-card-title class="headline" v-if="adAccion == 2">
 									Desactivar item?
 								</v-card-title>
 								<v-card-text>
@@ -221,9 +198,11 @@ export default {
 	methods: {
 		async listar() {
 			let me = this;
+			let header = { "Authorization": "Bearer " + this.$store.state.token };
+			let configuracion = { headers: header };
 
 			try {
-				const response = await axios.get("/api/categorias/Listar");
+				const response = await axios.get("/api/categorias/Listar", configuracion);
 				const items = response.data;
 				const data = [];
 
@@ -277,6 +256,9 @@ export default {
 				return;
 			}
 
+			let header = { "Authorization": "Bearer " + this.$store.state.token };
+			let configuracion = { headers: header };
+
 			if (this.editedIndex > -1) {
 				//Código para editar
 				let me = this;
@@ -285,7 +267,7 @@ export default {
 						idcategoria: me.id,
 						nombre: me.nombre,
 						descripcion: me.descripcion,
-					})
+					}, configuracion)
 					.then(function (response) {
 						me.close();
 						me.listar();
@@ -301,7 +283,7 @@ export default {
 					.post("api/categorias/Crear", {
 						nombre: me.nombre,
 						descripcion: me.descripcion,
-					})
+					}, configuracion)
 					.then(function (response) {
 						me.close();
 						me.listar();
@@ -350,11 +332,11 @@ export default {
 
 		async activar() {
 			let me = this;
+			let header = { "Authorization": "Bearer " + this.$store.state.token };
+			let configuracion = { headers: header };
 
 			try {
-				const response = await axios.put(
-					"api/categorias/Activar/" + this.adId
-				);
+				await axios.put("api/categorias/Activar/" + this.adId, {}, configuracion);
 
 				me.adModal = false;
 				me.adAccion = 0;
@@ -369,11 +351,11 @@ export default {
 
 		async desactivar() {
 			let me = this;
+			let header = { "Authorization": "Bearer " + this.$store.state.token };
+			let configuracion = { headers: header };
 
 			try {
-				const response = await axios.put(
-					"api/categorias/Desactivar/" + this.adId
-				);
+				await axios.put("api/categorias/Desactivar/" + this.adId, {}, configuracion);
 
 				me.adModal = false;
 				me.adAccion = 0;

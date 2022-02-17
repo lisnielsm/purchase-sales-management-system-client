@@ -12,11 +12,12 @@
 		<v-navigation-drawer
 			:clipped="$vuetify.breakpoint.lgAndUp"
 			v-model="drawer"
+			v-if="logueado"
 			fixed
 			app
 		>
 			<v-list dense>
-				<template>
+				<template v-if="esAdministrador || esAlmacenero || esVendedor">
 					<v-list-item :to="{ name: 'home' }">
 						<v-list-item-action>
 							<v-icon>home</v-icon>
@@ -24,7 +25,7 @@
 						<v-list-item-title> Inicio </v-list-item-title>
 					</v-list-item>
 				</template>
-				<template>
+				<template v-if="esAdministrador || esAlmacenero">
 					<v-list-group>
 						<v-list-item slot="activator">
 							<v-list-item-content>
@@ -49,7 +50,7 @@
 						</v-list-item>
 					</v-list-group>
 				</template>
-				<template>
+				<template v-if="esAdministrador || esAlmacenero">
 					<v-list-group>
 						<v-list-item slot="activator">
 							<v-list-item-content>
@@ -74,7 +75,7 @@
 						</v-list-item>
 					</v-list-group>
 				</template>
-				<template>
+				<template v-if="esAdministrador || esVendedor">
 					<v-list-group>
 						<v-list-item slot="activator">
 							<v-list-item-content>
@@ -99,7 +100,7 @@
 						</v-list-item>
 					</v-list-group>
 				</template>
-				<template>
+				<template v-if="esAdministrador">
 					<v-list-group>
 						<v-list-item slot="activator">
 							<v-list-item-content>
@@ -124,7 +125,7 @@
 						</v-list-item>
 					</v-list-group>
 				</template>
-				<template>
+				<template v-if="esAdministrador">
 					<v-list-group>
 						<v-list-item slot="activator">
 							<v-list-item-content>
@@ -163,8 +164,13 @@
 				<span class="hidden-sm-and-down">Sistema</span>
 			</v-toolbar-title>
 			<v-spacer></v-spacer>
-			<v-btn icon>
-				<v-icon>apps</v-icon>
+			<v-btn @click="salir" v-if="logueado" text>
+				<v-icon>logout</v-icon>
+				<span class="pl-1">Salir</span>
+			</v-btn>
+			<v-btn :to="{ name: 'login' }" class="white--text" plain v-else> 
+				<v-icon>login</v-icon>
+				<span class="pl-1">Login</span>
 			</v-btn>
 		</v-app-bar>
 		<v-main>
@@ -194,8 +200,50 @@ export default {
 	name: "App",
 	data() {
 		return {
-			drawer: null,
+			clipped: false,
+			drawer: true,
+			fixed: false,
+			items: [
+				{
+					icon: "bubble_chart",
+					title: "Inspire",
+				},
+			],
+			miniVariant: false,
+			right: true,
+			rightDrawer: false,
+			title: "Vuetify.js",
 		};
+	},
+	computed: {
+		logueado() {
+			return this.$store.state.usuario;
+		},
+		esAdministrador() {
+			return (
+				this.$store.state.usuario &&
+				this.$store.state.usuario.rol == "Administrador"
+			);
+		},
+		esAlmacenero() {
+			return (
+				this.$store.state.usuario &&
+				this.$store.state.usuario.rol == "Almacenero"
+			);
+		},
+		esVendedor() {
+			return (
+				this.$store.state.usuario && this.$store.state.usuario.rol == "Vendedor"
+			);
+		},
+	},
+	created() {
+		this.$store.dispatch("autoLogin");
+	},
+	methods: {
+		salir() {
+			this.$store.dispatch("salir");
+		},
 	},
 };
 </script>
