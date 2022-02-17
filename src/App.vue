@@ -64,7 +64,7 @@
 								<v-list-item-title> Ingresos </v-list-item-title>
 							</v-list-item-content>
 						</v-list-item>
-						<v-list-item :to="{ name: '' }">
+						<v-list-item :to="{ name: 'proveedores' }">
 							<v-list-item-action>
 								<v-icon>table_chart</v-icon>
 							</v-list-item-action>
@@ -89,7 +89,7 @@
 								<v-list-item-title> Ventas </v-list-item-title>
 							</v-list-item-content>
 						</v-list-item>
-						<v-list-item :to="{ name: '' }">
+						<v-list-item :to="{ name: 'clientes' }">
 							<v-list-item-action>
 								<v-icon>table_chart</v-icon>
 							</v-list-item-action>
@@ -114,7 +114,7 @@
 								<v-list-item-title> Roles </v-list-item-title>
 							</v-list-item-content>
 						</v-list-item>
-						<v-list-item :to="{ name: '' }">
+						<v-list-item :to="{ name: 'usuarios' }">
 							<v-list-item-action>
 								<v-icon>table_chart</v-icon>
 							</v-list-item-action>
