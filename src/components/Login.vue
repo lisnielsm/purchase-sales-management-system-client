@@ -12,6 +12,7 @@
 						color="accent"
 						label="Email"
 						required
+						@keyup.enter="validarDatos()"
 					>
 					</v-text-field>
 					<v-text-field
@@ -20,6 +21,7 @@
 						color="accent"
 						label="Password"
 						required
+						@keyup.enter="validarDatos()"
 					>
 					</v-text-field>
 					<v-flex class="red--text" v-if="error">
@@ -72,6 +74,12 @@ export default {
 					}
 				});
 		},
+
+		validarDatos() {
+			if(this.email !== "" && this.password !== "") {
+				this.ingresar();
+			}
+		}
 	},
 };
 </script>

@@ -57,7 +57,7 @@
 								<v-list-item-title> Compras </v-list-item-title>
 							</v-list-item-content>
 						</v-list-item>
-						<v-list-item :to="{ name: '' }">
+						<v-list-item :to="{ name: 'ingresos' }">
 							<v-list-item-action>
 								<v-icon>table_chart</v-icon>
 							</v-list-item-action>
@@ -164,6 +164,11 @@
 				<span class="hidden-sm-and-down">Sistema</span>
 			</v-toolbar-title>
 			<v-spacer></v-spacer>
+			<v-flex text-center v-if="this.$store.state.usuario != null">
+				<p class="text-right pr-3 mb-0">
+					Bienvenid@ <span class="pl-1">{{this.$store.state.usuario.nombre}}</span>
+				</p>
+			</v-flex>
 			<v-btn @click="salir" v-if="logueado" text>
 				<v-icon>logout</v-icon>
 				<span class="pl-1">Salir</span>
